@@ -409,7 +409,7 @@ module BootstrapForm
     end
 
     def get_error_messages(name)
-      object.errors[name].join(", ")
+      object.errors[name].join(", ").html_safe
     end
 
     def inputs_collection(name, collection, value, text, options = {}, &block)
