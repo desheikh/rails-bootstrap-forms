@@ -38,17 +38,17 @@ class BootstrapCheckboxTest < ActionView::TestCase
   end
 
   test "inline checkboxes" do
-    expected = %{<label class="form-check-inline" for="user_terms"><input name="user[terms]" type="hidden" value="0" /><input class="form-check-input" id="user_terms" name="user[terms]" type="checkbox" value="1" /> I agree to the terms</label>}
+    expected = %{<label class="form-check form-check-inline" for="user_terms"><input name="user[terms]" type="hidden" value="0" /><input class="form-check-input" id="user_terms" name="user[terms]" type="checkbox" value="1" /> I agree to the terms</label>}
     assert_equivalent_xml expected, @builder.check_box(:terms, label: 'I agree to the terms', inline: true)
   end
 
   test "disabled inline check_box" do
-    expected = %{<label class="form-check-inline disabled" for="user_terms"><input disabled="disabled" name="user[terms]" type="hidden" value="0" /><input class="form-check-input" disabled="disabled" id="user_terms" name="user[terms]" type="checkbox" value="1" /> I agree to the terms</label>}
+    expected = %{<label class="form-check form-check-inline disabled" for="user_terms"><input disabled="disabled" name="user[terms]" type="hidden" value="0" /><input class="form-check-input" disabled="disabled" id="user_terms" name="user[terms]" type="checkbox" value="1" /> I agree to the terms</label>}
     assert_equivalent_xml expected, @builder.check_box(:terms, label: 'I agree to the terms', inline: true, disabled: true)
   end
 
   test "inline checkboxes with custom label class" do
-    expected = %{<label class="form-check-inline btn" for="user_terms"><input name="user[terms]" type="hidden" value="0" /><input class="form-check-input" id="user_terms" name="user[terms]" type="checkbox" value="1" /> Terms</label>}
+    expected = %{<label class="form-check form-check-inline btn" for="user_terms"><input name="user[terms]" type="hidden" value="0" /><input class="form-check-input" id="user_terms" name="user[terms]" type="checkbox" value="1" /> Terms</label>}
     assert_equivalent_xml expected, @builder.check_box(:terms, inline: true, label_class: 'btn')
   end
 
@@ -68,7 +68,7 @@ class BootstrapCheckboxTest < ActionView::TestCase
 
   test 'collection_check_boxes renders inline checkboxes correctly' do
     collection = [Address.new(id: 1, street: 'Foo'), Address.new(id: 2, street: 'Bar')]
-    expected = %{<input id="user_misc" multiple="multiple" name="user[misc][]" type="hidden" value="" /><div class="form-group"><label class="form-control-label" for="user_misc">Misc</label><label class="form-check-inline" for="user_misc_1"><input class="form-check-input" id="user_misc_1" name="user[misc][]" type="checkbox" value="1" /> Foo</label><label class="form-check-inline" for="user_misc_2"><input class="form-check-input" id="user_misc_2" name="user[misc][]" type="checkbox" value="2" /> Bar</label></div>}
+    expected = %{<input id="user_misc" multiple="multiple" name="user[misc][]" type="hidden" value="" /><div class="form-group"><label class="form-control-label" for="user_misc">Misc</label><label class="form-check form-check-inline" for="user_misc_1"><input class="form-check-input" id="user_misc_1" name="user[misc][]" type="checkbox" value="1" /> Foo</label><label class="form-check form-check-inline" for="user_misc_2"><input class="form-check-input" id="user_misc_2" name="user[misc][]" type="checkbox" value="2" /> Bar</label></div>}
 
     assert_equivalent_xml expected, @builder.collection_check_boxes(:misc, collection, :id, :street, inline: true)
   end

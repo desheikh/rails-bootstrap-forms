@@ -131,15 +131,11 @@ module BootstrapForm
       end
 
       disabled_class = " disabled" if options[:disabled]
+      inline_class = " form-check-inline" if options[:inline]
       label_class    = options[:label_class]
 
-      if options[:inline]
-        label_class = " #{label_class}" if label_class
-        label(label_name, html, class: "form-check-inline#{disabled_class}#{label_class}")
-      else
-        content_tag(:div, class: "form-check#{disabled_class}") do
-          label(label_name, html, class: ["form-check-label", label_class].compact.join(" "))
-        end
+      content_tag(:div, class: "form-check#{inline_class}#{disabled_class}") do
+        label(label_name, html, class: ["form-check-label", label_class].compact.join(" "))
       end
     end
 
@@ -152,15 +148,11 @@ module BootstrapForm
       html = radio_button_without_bootstrap(name, value, *args) + " " + options[:label]
 
       disabled_class = " disabled" if options[:disabled]
+      inline_class = " form-check-inline" if options[:inline]
       label_class    = options[:label_class]
 
-      if options[:inline]
-        label_class = " #{label_class}" if label_class
-        label(name, html, class: "radio-inline#{disabled_class}#{label_class}", value: value)
-      else
-        content_tag(:div, class: "radio#{disabled_class}") do
-          label(name, html, value: value, class: label_class)
-        end
+      content_tag(:div, class: "form-check#{inline_class}#{disabled_class}") do
+        label(name, html, value: value, class: label_class)
       end
     end
 
